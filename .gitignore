@@ -1,0 +1,5 @@
+*.o
+cscope.out
+huffman-decode
+huffman-encode
+Depend
