@@ -8,20 +8,20 @@
 COMMON_SRC = huffman.c heap.c node.c utils.c alphabet.c
 COMMON_OBJS = $(COMMON_SRC:%.c=%.o)
 
-ALL_SRC = $(COMMON_SRC) huffman-encode.c huffman-decode.c
-ALL_OBJS = $(COMMON_OBJS) huffman-encode.o huffman-decode.o
+ALL_SRC = $(COMMON_SRC) squash.c puff.c
+ALL_OBJS = $(COMMON_OBJS) squash.o puff.o
 
 CC = gcc
 CFLAGS = -std=c99 -Wall -Wextra -O0 -g
 
 
-all:		huffman-encode huffman-decode tags
+all:		squash puff tags
 
-huffman-encode:	$(COMMON_OBJS) huffman-encode.o
-	$(CC) $(CFLAGS) -o huffman-encode $(COMMON_OBJS) huffman-encode.o
+squash:	$(COMMON_OBJS) squash.o
+	$(CC) $(CFLAGS) -o squash $(COMMON_OBJS) squash.o
 
-huffman-decode:	$(COMMON_OBJS) huffman-decode.o
-	$(CC) $(CFLAGS) -o huffman-decode $(COMMON_OBJS) huffman-decode.o
+puff:	$(COMMON_OBJS) puff.o
+	$(CC) $(CFLAGS) -o puff $(COMMON_OBJS) puff.o
 
 compile:	$(ALL_OBJS)
 
@@ -29,7 +29,7 @@ clean:
 	/bin/rm $(ALL_OBJS)
 
 scrub:		clean
-	/bin/rm huffman-encode
+	/bin/rm squash puff
 
 # Use cscope to build a tags database. If you do not have cscope installed
 # at your site, you may wish to change this to invoke ctags instead.
